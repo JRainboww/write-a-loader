@@ -1,17 +1,14 @@
-import { getOptions } from 'loader-utils';
-import { validateOptions } from 'schema-utils';
+const getOptions = require('loader-utils').getOptions;
+const validateOptions = require('schema-utils');
 
 const schema = {
-  type: object,
-  properties: {
-    test: {
-      type: string
-    }
-  }
+  "additionalProperties": false,
+  "properties": {},
+  "type": "object"
 }
 
-export default function(source) {
-    const options = getOptions(this);
+module.exports = function(source) {
+    const options = getOptions(this) || {};
 
     validateOptions(schema, options, 'Example Loader');
 
